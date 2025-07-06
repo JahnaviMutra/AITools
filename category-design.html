@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">Designing & Visual Tools</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+      {
+        name: "Canva",
+        url: "https://www.canva.com/en_in/",
+        desc: "Design platform with AI features for creating graphics,presentations, and more."
+      },
+      {
+        name:"Adobe Stock",
+        desc:"Stock image service with AI-powered search and generative AI features.",
+        url:"https://stock.adobe.com/"
+      },
+      {
+        name:"Freepik AI",
+        desc:"AI-powered design tool for creating custom illustrations and graphics.",
+        url:"https://www.freepik.com/ai/search"
+      },
+      {
+        name:"AKOOL",
+        desc:"AI platform for creating personalized interactive expeiences and visualizations.",
+        url:"https://www.akool.com"
+      },
+      {
+        name:"Fish Audio",
+        desc:"AI-powered audio generation and editing tool for creators.",
+        url:"https://www.fishaudio.ai/"
+      },
+      {
+        name:"Bolt.new",
+        desc:"Collaborative web app for seamless creation of code and dsigns.",
+        url:"https://bolt.new/"
+      },
+      {
+        name:"WatermarkRemover.io",
+        desc:"AI tool that helps remove watermarks from images while preserving quality.",
+        url:"https://www.watermarkremover.io/"
+      },
+      {
+        name:"Hanooman",
+        desc:"AI platform that specializes in creative content generation for diverse needs.",
+        url:"https://hanooman.com/"
+      },
+      {
+        name:"Skyreels AI",
+        desc:"AI-powered platform for creating engaging video content and reels.",
+        url:"https://www.skyreels.ai/h5/"
+      },
+      {
+        name:"Beatoven.ai",
+        desc:"AI music composer that creates unique,royalty-free music for content.",
+        url:"https://www.beatoven.ai/"
+      }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

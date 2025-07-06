@@ -1,0 +1,299 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #0b1020;
+  color: #eaf6fb;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+
+.star-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background: transparent;
+  pointer-events: none;
+}
+.star-bg:before {
+  content: '';
+  position: absolute;
+  width: 100vw; height: 100vh;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.navbar {
+  background: transparent;
+  padding: 28px 0 22px 0;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+  margin-bottom:0 !important;
+}
+
+.nav-logo {
+  color: #3ecfff;
+  font-size: 4.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 12px #0ff2, 0 0 2px #000;
+  text-decoration: none;
+  cursor: default;
+  animation: blink 2.5s linear infinite;
+}
+@keyframes blink {
+  0%, 100% {
+    opacity:1;
+  }
+  50%{
+    opacity:0.2;
+  }
+}
+.ai-desc-main {
+  margin-top: 8px; /* navbar height + spacing */
+  width: 100%;
+  text-align: center;
+  font-size: 1.35rem;
+  color: #c2e9fa;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  margin-top:25px;
+  margin-bottom:10px;
+}
+
+@media (max-width: 700px) {
+  .ai-desc-main {
+    font-size: 1.05rem;
+    margin-top:2px;
+    padding: 0 8px;
+  }
+}
+
+
+
+.categories-section {
+  z-index: 2;
+  position: relative;
+  margin-bottom:15px;
+}
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.category-card {
+  background: rgba(18, 26, 46, 0.98);
+  border-radius: 18px;
+  border: 1.5px solid #1d2b4b;
+  box-shadow: 0 4px 24px #0003;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.15s;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.category-card:hover {
+  border: 1.5px solid #3ecfff;
+  box-shadow: 0 6px 32px #00eaff44;
+  transform: translateY(-6px) scale(1.025);
+}
+.category-card h3 {
+  font-size: 1.25rem;
+  color: #3ecfff;
+  margin: 0 0 12px 0;
+  font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.category-card p {
+  color: #c2e9fa;
+  font-size: 1.02rem;
+  margin: 0 0 18px 0;
+}
+.explore-link {
+  color: #3ecfff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.07rem;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.explore-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.category-heading {
+  text-align: center;
+  font-size: 2.3rem;
+  color: #3ecfff;
+  font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  font-weight: 700;
+  margin: 0 0 32px 0;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 12px #0ff2, 0 0 2px #000;
+}
+
+.search-bar {
+  width: 340px;
+  max-width: 90vw;
+  margin: 0 auto 40px auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.search-bar input {
+  width: 100%;
+  padding: 13px 48px 13px 20px;
+  border-radius: 30px;
+  border: 1.5px solid #3ecfff;
+  background: #181f33;
+  color: #eaf6fb;
+  font-size: 1.1rem;
+  outline: none;
+  font-family: inherit;
+  transition: border 0.2s;
+}
+.search-bar input:focus {
+  border: 1.5px solid #fff;
+}
+.search-icon {
+  position: absolute;
+  right: 18px;
+  color: #3ecfff;
+  font-size: 1.3rem;
+  pointer-events: none;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-items: center;
+}
+.tool-card {
+  background: rgba(18, 26, 46, 0.98);
+  border-radius: 16px;
+  border: 1.5px solid #1d2b4b;
+  box-shadow: 0 4px 24px #0003;
+  padding: 32px 20px 24px 20px;
+  text-align: center;
+  min-width: 0;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.15s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tool-card:hover {
+  border: 1.5px solid #3ecfff;
+  box-shadow: 0 6px 32px #00eaff44;
+  transform: translateY(-6px) scale(1.025);
+}
+.tool-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #0b1020;
+  border: 2px solid #3ecfff;
+  margin-bottom: 18px;
+  display: block;
+}
+.tool-title {
+  font-size: 1.18rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0 0 8px 0;
+  font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+  letter-spacing: 1px;
+}
+.tool-desc {
+  color: #c2e9fa;
+  font-size: 1.01rem;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 400;
+}
+
+.tools-link {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: #232946;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.tools-link:hover {
+  background: #3ecfff;
+  color: #232946;
+}
+
+/* Responsive: 2 per row on tablets, 1 per row on phones */
+@media (max-width: 1100px) {
+  .categories-grid, .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+@media (max-width: 700px) {
+  .categories-grid, .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .category-card, .tool-card {
+    padding: 20px 10px;
+  }
+  .nav-logo {
+    font-size: 1.5rem;
+  }
+  .category-heading {
+    font-size: 1.3rem;
+  }
+}
+.explore-btn-container {
+  text-align: center;
+  margin: 40px 0 32px 0;
+}
+.explore-btn {
+  display: inline-block;
+  background: #232946;
+  color: #fff;
+  border-radius: 30px;
+  padding: 18px 48px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 2px 12px #0ff2, 0 0 2px #000;
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+  border: none;
+}
+.explore-btn:hover {
+  background: #3ecfff;
+  color: #232946;
+  transform: scale(1.05);
+}
+

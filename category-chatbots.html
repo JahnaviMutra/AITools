@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">General AI Chat Bots</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+      {
+        name: "ChatGPT",
+        desc: "Advanced AI assistant by OpenAI for natural language understanding and generation.",
+        url: "https://chat.openai.com/"
+      },
+      {
+        name: "Gemini",
+        desc: "Google's multimodal AI language model that can process text, code, audio, and more.",
+        url: "https://gemini.google.com/"
+      },
+      {
+        name: "Grok.ai",
+        desc: "Real-time AI assistant that answers questions with humor and a rebellious personality.",
+        url: "https://grok.x.ai/"
+      },
+      {
+        name: "Deepseek.ai",
+        desc: "AI language model focused on deep understanding and generation of diverse content.",
+        url: "https://deepseek.com/"
+      },
+      {
+        name: "Meta AI",
+        desc: "AI assistant by Meta that understands text, images, and solves complex problems.",
+        url: "https://about.meta.com/ai/"
+      },
+      {
+        name: "Sarvam.ai",
+        desc: "Indian AI platform focused on building language models for Indian languages and contexts.",
+        url: "https://sarvam.ai/"
+      }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

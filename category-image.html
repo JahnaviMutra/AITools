@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">Image Generation Tools</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+      {
+        name: "Canva AI Image Generator",
+        url: "https://www.canva.com/ai-image-generator/",
+        desc: "Generate AI images and art from text prompts using Canva’s Magic Media and Dream Lab. Free to use, no watermark, with style and aspect ratio options." 
+      },
+      {
+        name: "Freepik AI Image Generator",
+        url: "https://www.freepik.com/ai/image-generator",
+        desc: "Create high-quality AI images from text with multiple models and style options. Free with generous daily limits and no watermark."
+      },
+      {
+        name: "DeepAI Image Generator",
+        url: "https://deepai.org/machine-learning-model/text2img",
+        desc: "Instantly transform your ideas into AI art from text descriptions. No sign-up required, free, and full user rights to creations."
+      },
+      {
+        name: "Microsoft Designer AI Image Generator",
+        url: "https://create.microsoft.com/en-us/features/ai-image-generator",
+        desc: "Create stunning images from text in seconds using Microsoft Designer’s free AI image generator. Supports a variety of art styles." 
+      },
+      {
+        name: "Fotor AI Image Generator",
+        url: "https://www.fotor.com/ai-image-generator/",
+        desc: "Turn words into images in seconds. Free, no ads, no watermarks, and supports multiple artistic styles and aspect ratios."
+      },
+      {
+        name: "Picsart AI Image Generator",
+        url: "https://picsart.com/ai-image-generator/",
+        desc: "Generate images instantly from text prompts in hundreds of styles. Free with limited daily generations, easy editing and download."
+      },
+      {
+        name: "Recraft",
+        url: "https://www.recraft.ai/",
+        desc: "Free AI graphic design tool for generating images, illustrations, and vector art. 50 free credits per day."
+      }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">Writing & Content Creation</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+        {
+            name:"Jasper",
+            desc:"AI content generator that helps create marketing copy,blog posts, and more.",
+            url:"https://www.jasper.ai/"
+        },
+        {
+            name:"Writesonic",
+            desc:"AI writing assistant for creating SEO-friendly content for various platforms.",
+            url:"https://writesonic.com/"
+        },
+        {
+            name:"Copy.ai",
+            desc:"AI copywriting tool that generates high-quality marketing copy in seconds.",
+            url:"https://www.copy.ai/"
+        },
+        {
+            name:"Grammarly",
+            desc:"AI writing assistant that checks spelling, grammar, and enhances writing style.",
+            url:"https://www.grammarly.com/"
+        },
+        {
+            name:"PseudoWrite",
+            desc:"AI tool that helps turn ideas and outlines into well-structured content.",
+            url:"https://pseudowrite.com/"
+        },
+        {
+            name:"Notion.ai",
+            desc:"AI writing assistant integrated with Notion for better notes and documents.",
+            url:"https://www.notion.com/product/ai"
+        }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

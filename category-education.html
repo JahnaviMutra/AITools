@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">Education & Learning Tools</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+      {
+        name: "Google Gemini",
+        url: "https://gemini.google.com/",
+        desc: "Google's free AI chatbot and assistant for research, writing, brainstorming, and learning. Available to anyone with a Google account."
+      },
+      {
+        name: "Perplexity AI",
+        url: "https://www.perplexity.ai/",
+        desc: "A free AI-powered search and answer engine for research, summaries, and citations. Great for students and self-learners."
+      },
+      {
+        name: "Khanmigo (Khan Academy)",
+        url: "https://www.khanacademy.org/khan-labs",
+        desc: "Khan Academy's free AI tutor and learning assistant for students and educators, offering personalized help and explanations." 
+      },
+      {
+        name: "Quizizz",
+        url: "https://quizizz.com/",
+        desc: "Free quiz and lesson platform with AI-powered question generation, grammar checking, and adaptive learning paths for students."
+      },
+      {
+        name: "Curipod",
+        url: "https://curipod.com/",
+        desc: "A free AI tool for teachers to create interactive lessons, presentations, and activities in minutes, tailored to student needs."
+      },
+      {
+        name: "Eduaide.Ai",
+        url: "https://eduaide.ai/",
+        desc: "Free AI-assisted lesson development tool for educators, with 100+ resource types and instant translation into 15+ languages."
+      },
+      {
+        name: "ChatPDF",
+        url: "https://www.chatpdf.com/",
+        desc: "Chat with any PDF for free—get summaries, explanations, and answers to questions about your study materials."
+      },
+      {
+        name: "Natural Readers",
+        url: "https://www.naturalreaders.com/online/",
+        desc: "Free AI-powered text-to-speech tool for reading study materials aloud, supporting multiple languages and voices."
+      },
+      {
+        name: "Google NotebookLM",
+        url: "https://notebooklm.google.com/",
+        desc: "A free AI-powered research assistant that surfaces insights and provides overviews on your uploaded notes, PDFs, and documents." 
+      },
+    
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

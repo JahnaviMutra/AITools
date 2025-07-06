@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">Code Assistant Tools</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+        {
+            name:"GitHub Copilot",
+            desc:"AI pair programmer that helps you write better code faster.",
+            url:"https://github.com/features/copilot"
+        },
+        {
+            name:"CodeWishperer(AWS)",
+            desc:"AI code suggestions for cloud and backend",
+            url:"https://aws.amazon.com/codewhisperer/"
+        },
+        {
+            name:"Tabnine",
+            desc:"AI code completion tool that helps developers code faster with fewer errors.",
+            url:"https://www.tabnine.com/"
+        },
+        {
+            name:"Replit Ghostwriter",
+            desc:"AI coding assistant that helps developers write,fix, and improve code.",
+            url:"https://replit.com/ai"
+        },
+        {
+            name:"PrograMig",
+            desc:"AI-powered platform for learning programming through interactive experiences.",
+            url:"https://programig.com/"
+        },
+        {
+            name:"Codeium",
+            desc:"Free AI-powered code completion alternative with context understanding.",
+            url:"https://codeium.com/"
+        },
+        {
+            name:"Editor.p5.js.org",
+            desc:"Web editor for p5.js with AI features to help create visual applications.",
+            url:"https://editor.p5js.org/"
+        }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">General PDF Tools</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+      {
+        name: "PDF.ai",
+        url: "https://pdf.ai/tools",
+        desc: "A suite of free AI tools for PDFs, including chat with PDF, summarization, and more. No sign-up required."
+      },
+      {
+        name: "LightPDF",
+        url: "https://lightpdf.com",
+        desc: "Free online PDF editor and converter with AI features like OCR, chat with PDF, summarization, translation, and document Q&A. 100% free with no sign-up." 
+      },
+      {
+        name: "Smallpdf AI PDF",
+        url: "https://smallpdf.com/ai-pdf",
+        desc: "Free AI-powered PDF tool for reading, summarizing, extracting key points, and chatting with your PDF. Works online on any device."
+      },
+      {
+        name: "Adobe Acrobat AI Assistant",
+        url: "https://www.adobe.com/in/acrobat/online/ai-chat-pdf.html",
+        desc: "AI-powered chat with PDF tool for summarizing and answering questions. Free to use with sign-in for more advanced features."
+      },
+      {
+        name: "Canva PDF Editor",
+        url: "https://www.canva.com/pdf-editor/",
+        desc: "Free online PDF editor with AI-powered features for editing, annotating, and transforming PDFs into designs."
+      }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>

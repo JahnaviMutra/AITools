@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>General AI Chat Bots</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="star-bg"></div>
+  <nav class="navbar">
+    <a class="nav-logo" href="index.html">AI Tools</a>
+  </nav>
+  <main>
+    <h1 class="category-heading">Health Assistance Tools</h1>
+    <div class="search-bar">
+      <input id="searchInput" type="text" placeholder="Search AI tools...">
+      <span class="search-icon">&#128269;</span>
+    </div>
+    <div id="tools-grid" class="tools-grid"></div>
+    <div style="text-align:center;margin-top:2em;">
+      <a href="index.html" class="tools-link">← Back to Categories</a>
+    </div>
+  </main>
+  <script>
+    const tools = [
+        {
+            name:"Ada Health",
+            desc:"AI-powered health assessment app that helps identify symptoms and conditions.",
+            url:"https://ada.com/"
+        },
+        {
+            name:"Babylon Health",
+            desc:"AI healthcare service providing virtual consultations and health monitoring.",
+            url:"https://www.emed.com/uk"
+        },
+        {
+            name:"Buoy Health",
+            desc:"AI symptom checker that guides users to appropriate care options.",
+            url:"https://www.buoyhealth.com/"
+        },
+        {
+            name:"Woebot",
+            desc:"AI mental health chatbot providing cognitive behavioral therapy techniques.",
+            url:"https://woebothealth.com/"
+        },
+        {
+            name:"Healthily",
+            desc:"AI-powered symptom checker and health information platform.",
+            url:"https://www.livehealthily.com/"
+        },
+        {
+            name:"MyFitnessPal",
+            desc:"AI-enhanced fitness and nutrition tracking app for health monitoring.",
+            url:"https://www.myfitnesspal.com/"
+        }
+    ];
+
+    function renderTools(filter = "") {
+      const toolsGrid = document.getElementById('tools-grid');
+      toolsGrid.innerHTML = "";
+      const filtered = tools.filter(tool =>
+        tool.name.toLowerCase().includes(filter.toLowerCase()) ||
+        tool.desc.toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        toolsGrid.innerHTML = "<p style='grid-column:1/-1;text-align:center;color:#fff;'>No tools found.</p>";
+        return;
+      }
+      filtered.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'tool-card';
+        card.tabIndex = 0;
+        card.title = tool.name;
+        card.onclick = () => window.open(tool.url, '_blank');
+        card.innerHTML = `
+          <img class="tool-logo" src="${tool.img}" alt="${tool.name} logo" onerror="this.style.display='none'">
+          <div class="tool-title">${tool.name}</div>
+          <div class="tool-desc">${tool.desc}</div>
+        `;
+        toolsGrid.appendChild(card);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      renderTools();
+
+      searchInput.addEventListener('input', e => {
+        renderTools(e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>
